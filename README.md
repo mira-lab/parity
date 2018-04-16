@@ -1,11 +1,12 @@
-# [Parity](https://parity.io/) - fast, light, and robust Ethereum client
+# Parity - fast, light, and robust Ethereum client
+
+## [» Download the latest release «](https://github.com/paritytech/parity/releases/latest)
 
 [![build status](https://gitlab.parity.io/parity/parity/badges/master/build.svg)](https://gitlab.parity.io/parity/parity/commits/master)
 [![codecov](https://codecov.io/gh/paritytech/parity/branch/master/graph/badge.svg)](https://codecov.io/gh/paritytech/parity)
 [![Snap Status](https://build.snapcraft.io/badge/paritytech/parity.svg)](https://build.snapcraft.io/user/paritytech/parity)
 [![GPLv3](https://img.shields.io/badge/license-GPL%20v3-green.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-- [Download the latest release here.](https://github.com/paritytech/parity/releases/latest)
 
 ### Join the chat!
 
@@ -18,7 +19,9 @@ Get in touch with us on Gitter:
 Or join our community on Matrix:
 [![Riot: +Parity](https://img.shields.io/badge/riot-%2Bparity%3Amatrix.parity.io-orange.svg)](https://riot.im/app/#/group/+parity:matrix.parity.io)
 
-Be sure to check out [our wiki](https://paritytech.github.io/wiki/) and the [internal documentation](https://paritytech.github.io/parity/ethcore/index.html) for more information.
+Official website: https://parity.io
+
+Be sure to check out [our wiki](https://wiki.parity.io) for more information.
 
 ----
 
@@ -26,12 +29,14 @@ Be sure to check out [our wiki](https://paritytech.github.io/wiki/) and the [int
 
 Parity's goal is to be the fastest, lightest, and most secure Ethereum client. We are developing Parity using the sophisticated and cutting-edge Rust programming language. Parity is licensed under the GPLv3, and can be used for all your Ethereum needs.
 
-Parity comes with a built-in wallet. To access [Parity Wallet](http://web3.site/) simply go to http://web3.site/ (if you don't have access to the internet, but still want to use the service, you can also use http://127.0.0.1:8180/). It includes various functionality allowing you to:
+Parity comes with a built-in wallet, to install it please follow [these instructions](https://wiki.parity.io/Parity-Wallet). It includes various functionality allowing you to:
 
 - create and manage your Ethereum accounts;
 - manage your Ether and any Ethereum tokens;
 - create and register your own tokens;
 - and much more.
+
+From Parity Ethereum client version >=1.10, the User Interface (UI) is accessible in a separate application called Parity UI. To keep using the UI in the browser (deprecated), [follow these steps](https://wiki.parity.io/FAQ-Basic-Operations,-Configuration,-and-Synchronization.md#the-parity-ui-application-isnt-working-the-way-i-want).
 
 By default, Parity will also run a JSONRPC server on `127.0.0.1:8545` and a websockets server on `127.0.0.1:8546`. This is fully configurable and supports a number of APIs.
 
@@ -39,13 +44,13 @@ If you run into an issue while using Parity, feel free to file one in this repos
 
 **For security-critical issues**, please refer to the security policy outlined in [SECURITY.MD](SECURITY.md).
 
-Parity's current release is 1.8. You can download it at https://github.com/paritytech/parity/releases or follow the instructions below to build from source.
+Parity's current release is 1.9. You can download it at https://github.com/paritytech/parity/releases or follow the instructions below to build from source.
 
 ----
 
 ## Build dependencies
 
-**Parity requires Rust version 1.21.0 to build**
+**Parity requires Rust version 1.23.0 to build**
 
 We recommend installing Rust through [rustup](https://www.rustup.rs/). If you don't already have rustup, you can install it like this:
 
@@ -70,7 +75,11 @@ We recommend installing Rust through [rustup](https://www.rustup.rs/). If you do
 	$ rustup default stable-x86_64-pc-windows-msvc
   ```
 
-Once you have rustup, install Parity or download and build from source
+Once you have rustup installed, then you need to install:
+* [Perl](https://www.perl.org)
+* [Yasm](http://yasm.tortall.net)
+
+Make sure that these binaries are in your `PATH`. After that you should be able to build parity from source.
 
 ----
 
@@ -79,10 +88,20 @@ Once you have rustup, install Parity or download and build from source
 In any of the [supported Linux distros](https://snapcraft.io/docs/core/install):
 
 ```bash
-sudo snap install parity --edge
+sudo snap install parity
 ```
 
-(Note that this is an experimental and unstable release, at the moment)
+Or, if you want to contribute testing the upcoming release:
+
+```bash
+sudo snap install parity --beta
+```
+
+And to test the latest code landed into the master branch:
+
+```bash
+sudo snap install parity --edge
+```
 
 ----
 
@@ -117,7 +136,19 @@ Cleaning the repository will most likely solve the issue, try:
 $ cargo clean
 ```
 
-This will always compile the latest nightly builds. If you want to build stable or beta, do a `git checkout stable` or `git checkout beta` first.
+This will always compile the latest nightly builds. If you want to build stable or beta, do a
+
+```bash
+$ git checkout stable
+```
+
+or
+
+```bash
+$ git checkout beta
+```
+
+first.
 
 ----
 
@@ -127,7 +158,11 @@ This will always compile the latest nightly builds. If you want to build stable 
 bash <(curl https://get.parity.io -Lk)
 ```
 
-The one-line installer always defaults to the latest beta release.
+The one-line installer always defaults to the latest beta release. To install a stable release, run:
+
+```bash
+bash <(curl https://get.parity.io -Lk) -r stable
+```
 
 ## Start Parity
 
@@ -147,4 +182,4 @@ To start Parity as a regular user using systemd init:
 
 1. Copy `./scripts/parity.service` to your
 systemd user directory (usually `~/.config/systemd/user`).
-2. To configure Parity, write a `/etc/parity/config.toml` config file, see [Configuring Parity](https://github.com/paritytech/parity/wiki/Configuring-Parity) for details.
+2. To configure Parity, write a `/etc/parity/config.toml` config file, see [Configuring Parity](https://paritytech.github.io/wiki/Configuring-Parity) for details.
